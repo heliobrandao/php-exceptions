@@ -12,17 +12,10 @@ function funcao1()
 
     try {
         funcao2();
-    } catch (RuntimeException | DivisionByZeroError $err) {
-        echo $err->getMessage() . PHP_EOL;
-        echo $err->getLine() . PHP_EOL;
-        echo $err->getTraceAsString() . PHP_EOL;
-
-        throw new RuntimeException(
-            'Exceção foi tratada, mas, pega ai',
-            1,
-            $err
-        );
-
+    } catch (Throwable $problema) {
+        echo $problema->getMessage() . PHP_EOL;
+        echo $problema->getLine() . PHP_EOL;
+        echo $problema->getTraceAsString() . PHP_EOL;
     }
     echo 'Saindo da função 1' . PHP_EOL;
 }
@@ -30,9 +23,8 @@ function funcao1()
 function funcao2()
 {
     echo 'Entrei na função 2' . PHP_EOL;
-
-    $exception = new RuntimeException();
-    throw $exception;
+   
+    throw new RuntimeException('Essa é a mensagem de exceção');
 
     echo 'Saindo da função 2' . PHP_EOL;
 }
