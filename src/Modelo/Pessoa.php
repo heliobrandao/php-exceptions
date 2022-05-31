@@ -1,6 +1,7 @@
 <?php
-
+ 
 namespace Alura\Banco\Modelo;
+use LengthException;
 
 abstract class Pessoa
 {
@@ -29,8 +30,10 @@ abstract class Pessoa
     final protected function validaNome(string $nomeTitular)
     {
         if (strlen($nomeTitular) < 5) {
-            echo "Nome precisa ter pelo menos 5 caracteres";
-            exit();
+            
+            throw new LengthException("O nome precisa conter 5 letras no mínimo ");
+            //echo "Nome precisa ter pelo menos 5 caracteres";
+            //exit();
         }
     }
 }
